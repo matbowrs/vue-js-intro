@@ -1,0 +1,10 @@
+.nav-bar {
+    background-image: linear-gradient(lightblue, lightgreen);
+}
+#pimg {
+    height: 40%;
+    width: 40%;
+}
+h1, p {
+    margin-left: 50%;
+}
