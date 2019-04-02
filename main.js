@@ -8,6 +8,19 @@ const app = new Vue ({
         image: '/vmSocks-blue.jpg',
         //inStock: false
         inventory: 100,
-        onSale: true
+        onSale: false,
+        // Array of products
+        details: ["80% cotton", "20% polyester", "Gender-neutral"],
+        variants: [
+            {
+                variantId: 2234,
+                variantColor: "blue"
+            }, 
+            {
+                variantId: 2235,
+                variantColor: "green"
+            }
+        ],
+        cart: 0
     }
 });
