@@ -34,7 +34,17 @@
 
                 <!-- Why do this in a div? -->
                 <div v-for="variant in variants" :key="variant.variantId">
-                    <p> {{ variant.variantColor }}</p>
+                    <!-- v-on can be shortened to @ -->
+                    <p @mouseover="updateProduct(variant.variantImage)" class="variantImgs"> {{ variant.variantColor }}</p>
+                </div>
+                
+                <!-- Can do this for simple methods (cart++)-->
+                <!--<button v-on:click="cart++" class="button"> Add to Cart</button> -->
+                <button v-on:click="addToCart" class="button"> Add to Cart</button>
+
+
+                <div class="cart">
+                    <o>Cart ({{ cart }})</o>
                 </div>
 
             </div>
