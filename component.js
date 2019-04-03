@@ -54,14 +54,12 @@ Vue.component('product', {
                 :class="{ disabledButton: !inStock }"> Add to Cart
         </button>
 
+        <!--
         <button @click="removeFromCart"
                 :disabled="!inStock"
                 :class="{ disabledButton: !inStock }">Remove from Cart
         </button>
-
-        <div class="cart">
-            <p>Cart ({{ cart }})</p>
-        </div>
+        -->
 
     </div>
 </div>
@@ -69,37 +67,44 @@ Vue.component('product', {
     data() {
         return {
             brand: 'Vue Mastery',
-            product: 'socks',
+            product: 'Socks',
             selectedVariant: 0,
             inventory: 100,
-            cart: 0,
             details: ["80% cotton", "20% polyester", "Gender-neutral"],
             variants: [
                 {
                     variantId: 2234,
-                    variantColor: "blue",
+                    variantColor: "Blue",
                     variantImage: "/vmSocks-blue.jpg",
                     variantQuantity: 0,
                     variantOnSale: true
                 }, 
                 {
                     variantId: 2235,
-                    variantColor: "green",
+                    variantColor: "Green",
                     variantImage: "/vmSocks-green.jpg",
                     variantQuantity: 30,
                     variantOnSale: false
                 }
-            ],
+            ]
         }
     }, 
     methods: {
+        /*
         addToCart() {
-            this.cart++;
+            this.$emit('add-to-cart');
+        }
+        */
+        addToCart() {
+            this.$emit('add-to-cart',this.variants[this.selectedVariant]
+                        .variantId);
         },
+        /*
         removeFromCart() {
             if (this.cart != 0)
                 this.cart--;
         },
+        */
         updateProduct(index) {
             this.selectedVariant = index;
         }
@@ -132,6 +137,18 @@ Vue.component('product', {
 const app = new Vue ({
     el: '#app',
     data: {
-        premium: true
+        premium: true,
+        //cart: 0
+        cart: []
+    },
+    methods: {
+        /*
+        updateCart() {
+            this.cart++;
+        }
+        */
+        updateCart(id) {
+            this.cart.push(id);
+        }
     }
 });

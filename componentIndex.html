@@ -12,8 +12,13 @@
     <div class="nav-bar"></div>
 
     <div id="app">
-        
-        <product :premium="premium"></product>
+
+        <div class="cart">
+            <!-- Can do cart.length because it is now an array -->
+            <p>Cart ({{ cart.length }})</p>
+        </div>
+
+        <product :premium="premium" @add-to-cart="updateCart"></product>
         <product></product>
 
     </div>
