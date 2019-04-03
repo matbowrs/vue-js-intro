@@ -4,6 +4,7 @@ const app = new Vue ({
     // The data we want to insert
     data: {
         // product is what we pass in
+        brand: 'Vue Mastery',
         product: 'Blue socks',
         image: '/vmSocks-blue.jpg',
         inStock: true,
@@ -30,10 +31,16 @@ const app = new Vue ({
             this.cart++;
         },
         removeFromCart: function() {
-            this.cart--;
+            if (this.cart != 0)
+                this.cart--;
         },
         updateProduct: function( variantImage ) {
             this.image = variantImage;
+        }
+    },
+    computed: {
+        title() {
+            return this.brand + ' ' + this.product
         }
     }
 });

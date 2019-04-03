@@ -18,8 +18,12 @@
             </div>
 
             <div class="product-info">
-
-                <h1>{{ product }}</h1>
+                <!-- 2 ways to display the brand and product name
+                First way: 
+                <h1>{{ brand }} {{ product }}</h1> 
+                Second way that uses "Computed Properties:"
+                -->
+                <h1> {{ title }} </h1>
 
                 <p :class="{ outOfStock: !inStock}">In Stock</p>
 
@@ -55,12 +59,14 @@
                 <!--<button v-on:click="cart++" class="button"> Add to Cart</button> -->
                 <button v-on:click="addToCart" 
                         :disabled="!inStock" 
-                        :class="{disabledButton: !inStock}"> Add to Cart</button>
+                        :class="{ disabledButton: !inStock }"> Add to Cart</button>
 
-                <button @click="removeFromCart">Remove from Cart</button>
+                <button @click="removeFromCart"
+                        :disabled="!inStock"
+                        :class="{ disabledButton: !inStock }">Remove from Cart</button>
 
                 <div class="cart">
-                    <o>Cart ({{ cart }})</o>
+                    <p>Cart ({{ cart }})</p>
                 </div>
 
             </div>
