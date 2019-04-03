@@ -13,7 +13,7 @@
         <div class="product">
             <div class="product-image">
 
-                <img id='pimg' v-bind:src="image" />
+                <img v-bind:src="image" />
 
             </div>
 
@@ -45,14 +45,19 @@
                     <li v-for="detail in details">{{ detail }}</li>
                 </ul>
 
-                <!-- Why do this in a div? -->
+                <!-- 
                 <div v-for="variant in variants" 
                     :key="variant.variantId"
                     class="color-box"
                     :style="{ backgroundColor: variant.variantColor }"
                     @mouseover="updateProduct(variant.variantImage)">
-
+                -->
                     <!-- v-on can be shortened to @ -->
+                <div v-for="(variant, index) in variants"
+                    :key="variant.variantId"
+                    class="color-box"
+                    :style="{ backgroundColor: variant.variantColor }"
+                    @mouseover="updateProduct(index)">
                 </div>
                 
                 <!-- Can do this for simple methods (cart++)-->
