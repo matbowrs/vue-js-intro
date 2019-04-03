@@ -42,11 +42,6 @@ Vue.component('product', {
 
         <productDetails :details="details"></productDetails>
 
-        <!--
-        <ul>
-            <li v-for="detail in details">{{ detail }}</li>
-        </ul>
-        -->
         <div v-for="(variant, index) in variants"
             :key="variant.variantId"
             class="color-box"
@@ -97,15 +92,16 @@ Vue.component('product', {
             cart: 0
         }
         
-    }, methods: {
-        addToCart: function () {
+    }, 
+    methods: {
+        addToCart() {
             this.cart++;
         },
-        removeFromCart: function() {
+        removeFromCart() {
             if (this.cart != 0)
                 this.cart--;
         },
-        updateProduct: function(index) {
+        updateProduct(index) {
             this.selectedVariant = index;
         }
     },
