@@ -6,7 +6,7 @@ const app = new Vue ({
         // product is what we pass in
         product: 'Blue socks',
         image: '/vmSocks-blue.jpg',
-        //inStock: false
+        inStock: true,
         inventory: 100,
         onSale: false,
         // Array of products
@@ -28,6 +28,9 @@ const app = new Vue ({
     methods: {
         addToCart: function () {
             this.cart++;
+        },
+        removeFromCart: function() {
+            this.cart--;
         },
         updateProduct: function( variantImage ) {
             this.image = variantImage;

@@ -20,28 +20,44 @@
             <div class="product-info">
 
                 <h1>{{ product }}</h1>
-                <!--<p v-if="inStock">In Stock</p>
+
+                <p :class="{ outOfStock: !inStock}">In Stock</p>
+
+                <!-- A few other options when displaying inStock -->
+
+                <!-- 
+                <p v-if="inStock">In Stock</p>
                 <p v-else>Out of Stock</p>
                 -->
+
+                <!--    
                 <p v-if="onSale">On Sale!</p>
                 <p v-if="inventory > 10"> In Stock </p>
                 <p v-else-if="inventory <= 10 && inventory > 0">Almost Sold Out!</p>
-                <p v-else>Out of Stock</p>
+                <p v-else :class="{ outOfStock: !inStock }">Out of Stock</p>
+                -->
 
                 <ul>
                     <li v-for="detail in details">{{ detail }}</li>
                 </ul>
 
                 <!-- Why do this in a div? -->
-                <div v-for="variant in variants" :key="variant.variantId">
+                <div v-for="variant in variants" 
+                    :key="variant.variantId"
+                    class="color-box"
+                    :style="{ backgroundColor: variant.variantColor }"
+                    @mouseover="updateProduct(variant.variantImage)">
+
                     <!-- v-on can be shortened to @ -->
-                    <p @mouseover="updateProduct(variant.variantImage)" class="variantImgs"> {{ variant.variantColor }}</p>
                 </div>
                 
                 <!-- Can do this for simple methods (cart++)-->
                 <!--<button v-on:click="cart++" class="button"> Add to Cart</button> -->
-                <button v-on:click="addToCart" class="button"> Add to Cart</button>
+                <button v-on:click="addToCart" 
+                        :disabled="!inStock" 
+                        :class="{disabledButton: !inStock}"> Add to Cart</button>
 
+                <button @click="removeFromCart">Remove from Cart</button>
 
                 <div class="cart">
                     <o>Cart ({{ cart }})</o>
