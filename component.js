@@ -1,5 +1,22 @@
 // Component based 
 
+Vue.component('productDetails', {
+    props: {
+        details: {
+            type: Array,
+            required: true
+        }
+    },
+    template:
+    `
+    <div class="productDetails">
+        <ul>
+            <li v-for="detail in details">{{ detail }}</li>
+        </ul>
+    </div>
+    `
+})
+
 Vue.component('product', {
     props: {
         premium: {
@@ -19,13 +36,17 @@ Vue.component('product', {
         <h1> {{ title }} </h1>
 
         <p :class="{ outOfStock: !inStock}">In Stock</p>
-        <p>Shipping: {{ shipping }} </p>
+        <p v-if="inStock">Shipping: {{ shipping }} </p>
+        <p v-else>Shipping: Not Available</p>
         <p> {{ onSale }} </p>
 
+        <productDetails :details="details"></productDetails>
+
+        <!--
         <ul>
             <li v-for="detail in details">{{ detail }}</li>
         </ul>
-
+        -->
         <div v-for="(variant, index) in variants"
             :key="variant.variantId"
             class="color-box"
@@ -113,9 +134,6 @@ Vue.component('product', {
     
 })
 
-Vue.component('productDetails', {
-    
-})
 const app = new Vue ({
     el: '#app',
     data: {
