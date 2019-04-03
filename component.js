@@ -72,6 +72,7 @@ Vue.component('product', {
             product: 'socks',
             selectedVariant: 0,
             inventory: 100,
+            cart: 0,
             details: ["80% cotton", "20% polyester", "Gender-neutral"],
             variants: [
                 {
@@ -89,9 +90,7 @@ Vue.component('product', {
                     variantOnSale: false
                 }
             ],
-            cart: 0
         }
-        
     }, 
     methods: {
         addToCart() {
