@@ -112,7 +112,9 @@ Vue.component('product', {
     },
     computed: {
         title() {
-            return this.brand + ' ' + this.product
+            return this.brand + ' ' 
+            + this.variants[this.selectedVariant].variantColor 
+            + ' ' + this.product;
         },
         image() {
             return this.variants[this.selectedVariant].variantImage;
