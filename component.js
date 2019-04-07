@@ -71,6 +71,7 @@ Vue.component('product', {
                 <p> {{ review.name }} </p>
                 <p> {{ review.review }} </p>
                 <p> {{ review.rating }} </p>
+                <p> {{ review.recommendation}} </p>
             </li>
         </ul>
     </div>
@@ -195,10 +196,31 @@ Vue.component('product-review', {
             </select>
         </p>
 
+        <br>
+
+        <p>
+            <label for="recommendation">Would you recommend this product?</label>
+
+            <br>
+
+            <input type="radio" 
+                    name="recommendation" 
+                    value="Yes"
+                    id="radio"
+                    v-model="recommendation"> Yes
+
+            <br>
+
+            <input type="radio" 
+                    name="recommendation" 
+                    value="No"
+                    id="radio"
+                    v-model="recommendation"> No 
+        </p>
+
         <p>
             <input type="submit" value="Submit">
         </p>
-
 
     `,
     data() {
@@ -206,21 +228,24 @@ Vue.component('product-review', {
             name: null,
             review: null,
             rating: null,
+            recommendation: null,
             errors: []
         }
     },
     methods: {
         onSubmit() {
-            if (this.name && this.review && this.rating) {
+            if (this.name && this.review && this.rating && this.recommendation) {
                 let productReview = {
                     name: this.name,
                     review: this.review,
-                    rating: this.rating
+                    rating: this.rating,
+                    recommendation: this.recommendation
                 }
                 this.$emit('review-submitted', productReview)
                 this.name = null;
                 this.review = null;
                 this.rating = null;
+                this.recommendation = null;
             } else {
                 if(!this.name)
                     this.errors.push("Name required.");
@@ -228,7 +253,7 @@ Vue.component('product-review', {
                     this.errors.push("Review required.");
                 if (!this.rating)
                     this.errors.push("Rating required.");
-
+                // Recommendations ARE NOT required
             }
         }
     }
